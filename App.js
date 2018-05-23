@@ -6,35 +6,33 @@
 
 import React, { Component } from 'react';
 import TodoList from './components/TodoList'
+import { connect } from 'react-redux';
 
-import {
-  StyleSheet,
-  View
-} from 'react-native';
 
-export default class App extends Component {
+ class App extends Component {
+  static navigationOptions = {
+		title: 'Home'
+	  }
+
   constructor(props) {
     super(props)
-    this.state = {
-      todos : [{title: 'Clean Room'}, {title: 'Drink Milk'}],
+    this.onAdd = this.onAdd.bind(this);
 
-    }
+  }
+  onAdd() {
+    this.props.navigation.navigate('Add')
   }
   render() {
-    return (
-      <View style={styles.container}>
-        
-        <TodoList todos={this.state.todos} />
-      </View>
-    );
+    return(
+      <TodoList todos={this.props.todos}  onAdd={this.onAdd} onCancel={this.onCancel}/>
+    )
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+}
+const mapStateToProps = (state) => {
+	return {
+		todos: [...state.todos]
+	}
+}
+export default connect(mapStateToProps)(App);
+
