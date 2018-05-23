@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  {View, Text, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -53,7 +54,10 @@ class TodoForm extends Component {
 
     }
     onAddTodo() {
-        
+        this.props.addTodo(this.input)
+        console.log(this.props.todos)
+        this.props.navigation.navigate('Home')
+
     }
     onCancel() {
         this.props.navigation.navigate('Home')
@@ -64,9 +68,20 @@ class TodoForm extends Component {
 				<TextInput style={styles.input} onChangeText={(text)=> this.input = text}/>
                 <TouchableHighlight style={styles.button} onPress={this.onAddTodo}><Text style={styles.buttonText}>Add</Text></TouchableHighlight>
                 <TouchableHighlight style={[styles.button,styles.cancelButton]} onPress={this.onCancel}><Text style={styles.buttonText}>Cancel</Text></TouchableHighlight>
-
 			</View>
 		)
 	}
 }
-export default TodoForm
+const mapStateToProps = (state) => {
+    return {
+        todos: [...state.todos]
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTodo: (input) => {
+            dispatch({type: 'ADD_TODO', value: input})
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)

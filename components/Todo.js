@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import  {View, Text, StyleSheet} from 'react-native';
+import  {View, Text, StyleSheet, ListItem} from 'react-native';
 import PropTypes from 'prop-types';
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#fff',
+		backgroundColor: '#000',
 		borderWidth: 1,
 		borderColor: '#E7E7E7',
 		padding: 20,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 	label: {
 		fontSize: 20,
 		fontWeight: '300',
-		color: '#0f0517'	
+		color: 'white'	
 
 	}
 })
@@ -30,7 +30,7 @@ class Todo extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={styles.label}>{this.props.title}</Text>
+				<ListItem style={styles.label} title={this.props.title}></ListItem>
 			</View>
 		)
 	}

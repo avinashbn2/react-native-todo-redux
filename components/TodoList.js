@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  {View, Text, ListView, TouchableHighlight, StyleSheet} from 'react-native';
+import  {View, Text, FlatList, TouchableHighlight, StyleSheet, ListItem} from 'react-native';
 import Todo from './Todo';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
@@ -25,24 +25,30 @@ class TodoList extends Component {
 	
 	constructor(props) {
 		super(props)
-		const ds = new ListView.DataSource({
-			rowHasChanged: (r1, r2)=> r1!==r2
-		})
+		// const ds = new ListView.DataSource({
+		// 	rowHasChanged: (r1, r2)=> r1!==r2
+		// })
 
-		this.state = {
+		// this.state = {
 
-			dataSource: ds.cloneWithRows(this.props.todos)
-		}
+		// 	dataSource: ds.cloneWithRows(this.props.todos)
+		// }
 		this.renderRow = this.renderRow.bind(this)
-		this.onAdd = this.onAdd.bind(this)
 
 	}
+	// componentWillReceiveProps(newProps) {
+	// if (newProps.todos !== this.props.todos) {
 	
+	// this.setState({
+	// 	dataSource: this.state.dataSource.cloneWithRows(this.props.todos)
+	// });
+	// }
+	// }
 	renderRow(todo) {
 		return(<Todo title={todo.title} />)
 	}
 	render() {
-		if(this.state.dataSource.length===0) {
+		if(this.props.todos.length===0) {
 			return (
 				<View>
 				<Text>loading ...</Text>
@@ -52,7 +58,7 @@ class TodoList extends Component {
 			return (
 				<View>
 				{
-					<ListView dataSource={this.state.dataSource} key={this.props.todos} renderRow={this.renderRow}></ListView>
+					<FlatList  data={this.props.todos} key={this.props.todos} renderItem={this.renderRow}></FlatList>
 
 				}
 				<TouchableHighlight onPress={this.props.onAdd}  style={styles.button}><Text style={styles.buttonText}>Add Todo</Text></TouchableHighlight>

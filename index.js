@@ -14,15 +14,14 @@ const defaultState = {
     todos : [{title: 'Clean R9o00m'}, {title: 'Drink Milk'}],
 }
 const todoStore = (state=defaultState, action) => {
+    console.log(action);
     switch(action.type) {
         case 'ADD_TODO':
-            return Object.assign({}, state, {todos: state.todos.concat([{title: action.todo}])})
+            return {todos: [...state.todos, {title: action.value}]}
         default:
         return state
     }
 }
-
-
 const RootStack = StackNavigator({
     Home:  {screen: App},
     Add: {screen: TodoForm}
