@@ -4,6 +4,7 @@ import React from 'react'
 import TodoForm from './components/TodoForm'
 import {createStore, combineReducers} from 'redux'
 import { Provider,connect } from 'react-redux';
+import Test from './components/Test'
 import {
     NavigationActions,
     addNavigationHelpers,
@@ -11,7 +12,7 @@ import {
 } from 'react-navigation';
   
 const defaultState = {
-    todos : [{title: 'Clean R9o00m'}, {title: 'Drink Milk'}],
+    todos : [{title: 'Clean R9o00m'}, {title: 'Drink Milk'},{title: 'Clean R9o00m'}, {title: 'Drink Milk'},{title: 'Clean R9o00m'}, {title: 'Drink Milk'},{title: 'Clean R9o00m'}, {title: 'Drink Milk'}],
 }
 const todoStore = (state=defaultState, action) => {
     console.log(action);
@@ -24,7 +25,8 @@ const todoStore = (state=defaultState, action) => {
 }
 const RootStack = StackNavigator({
     Home:  {screen: App},
-    Add: {screen: TodoForm}
+    Add: {screen: TodoForm},
+    Test: {screen: Test}
   },   {
     initialRouteName: 'Home',
   }

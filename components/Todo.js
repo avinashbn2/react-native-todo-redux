@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import  {View, Text, StyleSheet, ListItem} from 'react-native';
+import  {View, Text, StyleSheet , TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#000',
 		borderWidth: 1,
+		backgroundColor: '#dedede',
 		borderColor: '#E7E7E7',
 		padding: 20,
 		flex:1,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 	label: {
 		fontSize: 20,
 		fontWeight: '300',
-		color: 'white'	
+		color: 'green'	
 
 	}
 })
@@ -29,9 +29,12 @@ class Todo extends Component {
 	}
 	render() {
 		return (
-			<View style={styles.container}>
-				<ListItem style={styles.label} title={this.props.title}></ListItem>
-			</View>
+	<TouchableHighlight>
+      <View style={styles.container}>
+        <Text style={styles.label}>{this.props.title}</Text>
+      </View>
+    </TouchableHighlight>
+
 		)
 	}
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  {View, Text, StyleSheet, TextInput, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
+import {Card, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 const styles = StyleSheet.create({
     container: {
@@ -68,7 +69,22 @@ class TodoForm extends Component {
 				<TextInput style={styles.input} onChangeText={(text)=> this.input = text}/>
                 <TouchableHighlight style={styles.button} onPress={this.onAddTodo}><Text style={styles.buttonText}>Add</Text></TouchableHighlight>
                 <TouchableHighlight style={[styles.button,styles.cancelButton]} onPress={this.onCancel}><Text style={styles.buttonText}>Cancel</Text></TouchableHighlight>
-			</View>
+            <Card
+              title='HELLO WORLD'
+              >
+              <Text style={{marginBottom: 10}}>
+                The idea with React Native Elements is more about component structure than actual design.
+              </Text>
+              <Button
+                icon={{name: 'code'}}
+                backgroundColor='#03A9F4'
+                fontFamily='Lato'
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                title='VIEW NOW' />
+            </Card>
+
+
+            </View>
 		)
 	}
 }

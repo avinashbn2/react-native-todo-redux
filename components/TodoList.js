@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import  {View, Text, FlatList, TouchableHighlight, StyleSheet, ListItem} from 'react-native';
-import Todo from './Todo';
+import  {View, Text, FlatList, TouchableHighlight, StyleSheet,List, ListItem} from 'react-native';
 import PropTypes from 'prop-types'
+import Todo from './Todo'
 import {connect} from 'react-redux'
+import { Button, Card } from 'react-native-elements'
+
 const styles = StyleSheet.create({
 	button: {
 		height: 60,
@@ -11,13 +13,16 @@ const styles = StyleSheet.create({
 		backgroundColor: '#333',
 		margin: 20,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems:'center'
 	},
 	buttonText: {
 		color:'#fff',
 		fontSize: 20,
 		fontWeight: '600'
 
+	},
+	container: {
+		flex: 1
 	}
 })
 
@@ -25,28 +30,13 @@ class TodoList extends Component {
 	
 	constructor(props) {
 		super(props)
-		// const ds = new ListView.DataSource({
-		// 	rowHasChanged: (r1, r2)=> r1!==r2
-		// })
-
-		// this.state = {
-
-		// 	dataSource: ds.cloneWithRows(this.props.todos)
-		// }
 		this.renderRow = this.renderRow.bind(this)
 
 	}
-	// componentWillReceiveProps(newProps) {
-	// if (newProps.todos !== this.props.todos) {
-	
-	// this.setState({
-	// 	dataSource: this.state.dataSource.cloneWithRows(this.props.todos)
-	// });
-	// }
-	// }
 	renderRow(todo) {
-		return(<Todo title={todo.title} />)
+		return(	<ListItem key={todo.title} title={todo.title} subtitle={todo.title} />)
 	}
+
 	render() {
 		if(this.props.todos.length===0) {
 			return (
@@ -56,13 +46,22 @@ class TodoList extends Component {
 		)
 		}else{
 			return (
-				<View>
-				{
-					<FlatList  data={this.props.todos} key={this.props.todos} renderItem={this.renderRow}></FlatList>
+      <View style={{flex: 1}} >
+        <View style={{flex: 0.8}}>
 
-				}
-				<TouchableHighlight onPress={this.props.onAdd}  style={styles.button}><Text style={styles.buttonText}>Add Todo</Text></TouchableHighlight>
-				</View>
+        <FlatList
+          data={this.props.todos}
+    		keyExtractor={({item})=> item}
+
+          renderItem={({ item }) => (
+          <Todo title={item.title} />
+          )}
+        />
+      </View>
+        <View style={{flex: 0.2}}>
+				<Button  raised onPress={this.props.onAdd}  style={styles.button} title="Add Todo"></Button>
+			      </View>
+	</View>
 
 			)
 		}

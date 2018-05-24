@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 
   }
   onAdd() {
-    this.props.navigation.navigate('Add')
+    this.props.navigation.navigate('Test')
   }
   render() {
     return(
@@ -29,10 +29,5 @@ import { connect } from 'react-redux';
   }
 
 }
-const mapStateToProps = (state) => {
-	return {
-		todos: [...state.todos]
-	}
-}
-export default connect(mapStateToProps)(App);
+export default App;
 
