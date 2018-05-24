@@ -61,7 +61,7 @@ class TodoForm extends Component {
 
     }
     onCancel() {
-        this.props.navigation.navigate('Home')
+        this.props.navigation.navigate('Test')
     }
 	render() {
 		return (

@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 
   }
   onAdd() {
-    this.props.navigation.navigate('Test')
+    this.props.navigation.navigate('Add')
   }
   render() {
     return(
